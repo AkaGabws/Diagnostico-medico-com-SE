@@ -1,0 +1,15 @@
+Lista de Doenças que ele consegue identificar 
+ "Gripe": 
+"Resfriado"
+"Alergia":
+"Botulismo":
+"Brucelose": 
+"Cistite":
+"Cólera": 
+"Coqueluche":
+"Difteria": 
+"Escarlatina": 
+"Febre Tifoide": 
+"Gonorreia": 
+"Hanseníase
+"Impetigo": 
