@@ -1,0 +1,96 @@
+LISTA DE DOENÇAS SUPORTADAS - SISTEMA DE DIAGNÓSTICO MÉDICO v2.0
+================================================================
+
+O sistema consegue identificar as seguintes condições médicas:
+
+1. GRIPE
+   - Sintomas: febre alta, dor de cabeça, dores musculares, tosse, fadiga
+   - Severidade: Moderada
+   - Procura médico: Não (geralmente)
+
+2. RESFRIADO
+   - Sintomas: coriza, espirros, dor de garganta, congestão nasal
+   - Severidade: Leve
+   - Procura médico: Não (geralmente)
+
+3. ALERGIA
+   - Sintomas: coceira nos olhos, espirros, nariz entupido, coriza clara
+   - Severidade: Leve
+   - Procura médico: Não (geralmente)
+
+4. BOTULISMO
+   - Sintomas: prisão de ventre, tontura, visão distorcida, dificuldade de abrir os olhos, fraqueza muscular
+   - Severidade: GRAVE
+   - Procura médico: IMEDIATAMENTE
+
+5. BRUCELOSE
+   - Sintomas: calafrio, dor de cabeça, cansaço, febre, suor noturno
+   - Severidade: Moderada
+   - Procura médico: Sim
+
+6. CISTITE
+   - Sintomas: vontade frequente de urinar, ardor ao urinar, febre, dor pélvica
+   - Severidade: Moderada
+   - Procura médico: Sim
+
+7. CÓLERA
+   - Sintomas: diarreia, desidratação, vômitos, fraqueza, cãibras
+   - Severidade: GRAVE
+   - Procura médico: IMEDIATAMENTE
+
+8. COQUELUCHE
+   - Sintomas: febre, espirro, mal-estar, tosse seca prolongada, tosse convulsiva
+   - Severidade: Moderada
+   - Procura médico: Sim
+
+9. DIFTERIA
+   - Sintomas: dor de garganta, aparecimento de placas nas amígdalas, febre, mal-estar, dificuldade para engolir
+   - Severidade: GRAVE
+   - Procura médico: IMEDIATAMENTE
+
+10. ESCARLATINA
+    - Sintomas: manchas vermelhas na pele, febre alta, dor de garganta, dores musculares, língua vermelha
+    - Severidade: Moderada
+    - Procura médico: Sim
+
+11. FEBRE TIFOIDE
+    - Sintomas: febre alta prolongada, dor de cabeça, náuseas, falta de apetite, diarreia
+    - Severidade: GRAVE
+    - Procura médico: IMEDIATAMENTE
+
+12. GONORREIA
+    - Sintomas: dor e ardor ao urinar, sangramentos, corrimento amarelado, dor pélvica
+    - Severidade: Moderada
+    - Procura médico: Sim
+
+13. HANSENÍASE
+    - Sintomas: manchas na pele, inchaço nas mãos e pés, perda de força muscular, formigamento
+    - Severidade: Moderada
+    - Procura médico: Sim
+
+14. IMPETIGO
+    - Sintomas: bolhas, dor, úlceras, coceira, feridas com crosta
+    - Severidade: Leve
+    - Procura médico: Sim
+
+15. PNEUMONIA
+    - Sintomas: febre alta, tosse com catarro, dificuldade para respirar, dor no peito, fadiga
+    - Severidade: GRAVE
+    - Procura médico: IMEDIATAMENTE
+
+16. DIABETES
+    - Sintomas: sede excessiva, vontade frequente de urinar, fome excessiva, perda de peso, fadiga
+    - Severidade: Moderada
+    - Procura médico: Sim
+
+================================================================
+INFORMAÇÕES IMPORTANTES:
+
+- O sistema calcula a confiabilidade do diagnóstico baseado na correspondência de sintomas
+- Doenças graves são marcadas para busca imediata de atendimento médico
+- O sistema fornece recomendações específicas para cada condição
+- Sempre consulte um profissional de saúde para confirmação
+
+================================================================
+Versão: 2.0
+Data de atualização: 2024 

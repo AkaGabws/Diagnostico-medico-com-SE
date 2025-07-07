@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Diagnóstico Médico - Python Web</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-stethoscope"></i>
+                    <h1>Sistema de Diagnóstico Médico</h1>
+                </div>
+                <p class="subtitle">Versão Python Web - Backend Python + Interface Web</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Form Section -->
+            <section class="form-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-user-md"></i> Dados do Paciente</h2>
+                    </div>
+                    <div class="card-body">
+                        <form id="diagnosticoForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="nome">
+                                        <i class="fas fa-user"></i> Nome Completo
+                                    </label>
+                                    <input type="text" id="nome" name="nome" required 
+                                           placeholder="Digite seu nome completo">
+                                </div>
+                                <div class="form-group">
+                                    <label for="idade">
+                                        <i class="fas fa-birthday-cake"></i> Idade
+                                    </label>
+                                    <input type="number" id="idade" name="idade" required 
+                                           min="1" max="150" placeholder="Ex: 25">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-venus-mars"></i> Sexo
+                                </label>
+                                <div class="radio-group">
+                                    <label class="radio-item">
+                                        <input type="radio" name="sexo" value="masculino" checked>
+                                        <span class="radio-custom"></span>
+                                        <i class="fas fa-mars"></i> Masculino
+                                    </label>
+                                    <label class="radio-item">
+                                        <input type="radio" name="sexo" value="feminino">
+                                        <span class="radio-custom"></span>
+                                        <i class="fas fa-venus"></i> Feminino
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sintomas">
+                                    <i class="fas fa-thermometer-half"></i> Sintomas
+                                </label>
+                                <textarea id="sintomas" name="sintomas" rows="4" required
+                                          placeholder="Digite seus sintomas (um por linha ou separados por vírgulas)&#10;Exemplo:&#10;febre alta&#10;dor de cabeça&#10;dores musculares"></textarea>
+                                <small class="form-help">
+                                    <i class="fas fa-info-circle"></i>
+                                    Seja específico e detalhado para melhor precisão
+                                </small>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-search"></i> Realizar Diagnóstico
+                                </button>
+                                <button type="button" class="btn btn-secondary" onclick="limparFormulario()">
+                                    <i class="fas fa-eraser"></i> Limpar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-clipboard-list"></i> Resultado do Diagnóstico</h2>
+                    </div>
+                    <div class="card-body">
+                        <div id="resultadoContent">
+                            <!-- Resultado será inserido aqui via JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History Section -->
+            <section class="history-section" id="historySection" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-history"></i> Histórico de Diagnósticos</h2>
+                        <button class="btn btn-sm btn-outline" onclick="limparHistorico()">
+                            <i class="fas fa-trash"></i> Limpar Histórico
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div id="historicoContent">
+                            <!-- Histórico será inserido aqui via JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <div class="quick-actions">
+                    <h3><i class="fas fa-bolt"></i> Ações Rápidas</h3>
+                    <button class="btn btn-outline" onclick="mostrarHistorico()">
+                        <i class="fas fa-history"></i> Ver Histórico
+                    </button>
+                    <button class="btn btn-outline" onclick="mostrarDoencas()">
+                        <i class="fas fa-list"></i> Lista de Doenças
+                    </button>
+                    <button class="btn btn-outline" onclick="mostrarSobre()">
+                        <i class="fas fa-info-circle"></i> Sobre o Sistema
+                    </button>
+                </div>
+
+                <div class="stats">
+                    <h3><i class="fas fa-chart-bar"></i> Estatísticas</h3>
+                    <div class="stat-item">
+                        <span class="stat-label">Diagnósticos Hoje:</span>
+                        <span class="stat-value" id="diagnosticosHoje">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Total de Doenças:</span>
+                        <span class="stat-value">16</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Versão:</span>
+                        <span class="stat-value">2.0 Python Web</span>
+                    </div>
+                </div>
+
+                <div class="emergency-info">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Emergência</h3>
+                    <p>Em caso de sintomas graves, procure atendimento médico imediatamente!</p>
+                    <button class="btn btn-danger" onclick="mostrarEmergencia()">
+                        <i class="fas fa-phone"></i> Emergência
+                    </button>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Modals -->
+    <div id="modalDoencas" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-list"></i> Doenças Suportadas</h2>
+                <span class="close" onclick="fecharModal('modalDoencas')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="listaDoencas">
+                    <!-- Lista será preenchida via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalSobre" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-info-circle"></i> Sobre o Sistema</h2>
+                <span class="close" onclick="fecharModal('modalSobre')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="sobre-content">
+                    <h3>Sistema de Diagnóstico Médico - Versão Python Web</h3>
+                    <p>Combina o poder do Python com a flexibilidade da web para fornecer uma experiência superior.</p>
+                    
+                    <h4>Características:</h4>
+                    <ul>
+                        <li>Backend Python robusto e confiável</li>
+                        <li>Interface web moderna e responsiva</li>
+                        <li>API REST para integração</li>
+                        <li>Base de conhecimento com 16 doenças</li>
+                        <li>Cálculo de confiabilidade do diagnóstico</li>
+                        <li>Histórico persistente em JSON</li>
+                        <li>Validação em tempo real</li>
+                        <li>Design acessível e intuitivo</li>
+                    </ul>
+
+                    <h4>Tecnologias Utilizadas:</h4>
+                    <ul>
+                        <li><strong>Backend:</strong> Python Flask</li>
+                        <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript ES6+</li>
+                        <li><strong>Ícones:</strong> Font Awesome</li>
+                        <li><strong>Tipografia:</strong> Google Fonts (Inter)</li>
+                        <li><strong>Persistência:</strong> JSON local</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Aviso Importante:</strong> Este sistema é apenas uma ferramenta de apoio ao diagnóstico médico. 
+                        Sempre consulte um profissional de saúde para confirmação e tratamento adequado.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalEmergencia" class="modal">
+        <div class="modal-content modal-danger">
+            <div class="modal-header">
+                <h2><i class="fas fa-exclamation-triangle"></i> Emergência Médica</h2>
+                <span class="close" onclick="fecharModal('modalEmergencia')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="emergency-content">
+                    <h3>Procure atendimento médico IMEDIATO se apresentar:</h3>
+                    <ul>
+                        <li>Dificuldade para respirar</li>
+                        <li>Dor no peito</li>
+                        <li>Perda de consciência</li>
+                        <li>Hemorragias</li>
+                        <li>Febre muito alta (>40°C)</li>
+                        <li>Sintomas muito graves</li>
+                    </ul>
+                    
+                    <div class="emergency-numbers">
+                        <h4>Números de Emergência:</h4>
+                        <p><strong>192</strong> - SAMU (Serviço de Atendimento Móvel de Urgência)</p>
+                        <p><strong>193</strong> - Corpo de Bombeiros</p>
+                        <p><strong>190</strong> - Polícia Militar</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+        <p>Analisando sintomas com Python...</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html> 
